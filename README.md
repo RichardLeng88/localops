@@ -19,10 +19,19 @@ values, credentials, and private log content are not inventory.
 
 ## Status
 
-LocalOps is in product definition. There is no usable release yet. The first
-workflow, supported platform, interface, implementation stack, data lifecycle,
-and license have not been selected. Implementation will begin after those
-choices and their trust boundaries have concrete acceptance checks.
+LocalOps is at its first read-only foundation. It is not yet a usable release
+or running dashboard.
+
+The current Go package inspects one absolute project path selected by the user.
+It reports the cleaned selected path, its direct `.git` marker path, and whether
+that marker is a directory or regular file. It does not search for projects,
+read Git metadata contents, execute Git or repository commands, or retain
+state.
+
+The initial product contract is Windows-first, single-user, offline-capable,
+and limited to a loopback-only web dashboard. Scanning, persistence, command
+execution, outbound network access, secret or environment-value collection,
+log capture, and process inspection or control are outside the current slice.
 
 ## Working principles
 
@@ -39,3 +48,13 @@ choices and their trust boundaries have concrete acceptance checks.
 The scope can grow toward project inventory, service lifecycle, operational
 diagnostics, delivery integrations, and additional machines, but each stage
 must earn that responsibility by solving a real workflow first.
+
+## Development
+
+Run the current test suite with:
+
+```powershell
+go test ./...
+```
+
+LocalOps is licensed under the [MIT License](LICENSE).
