@@ -19,14 +19,14 @@ values, credentials, and private log content are not inventory.
 
 ## Status
 
-LocalOps is at its first read-only foundation. It is not yet a usable release
-or running dashboard.
+LocalOps is at its first read-only foundation. It is not yet a usable release.
 
-The current Go package inspects one absolute project path selected by the user.
-It reports the cleaned selected path, its direct `.git` marker path, and whether
-that marker is a directory or regular file. It does not search for projects,
-read Git metadata contents, execute Git or repository commands, or retain
-state.
+The current web page inspects one absolute project path submitted by the user.
+It reports only the cleaned selected path, its direct `.git` marker path, and
+whether that marker is a directory or regular file. Each submission is
+independent: LocalOps does not retain a selected path. It does not search for
+projects, read project or Git metadata contents, execute Git or repository
+commands, or retain state.
 
 The initial product contract is Windows-first, single-user, offline-capable,
 and limited to a loopback-only web dashboard. Scanning, persistence, command
@@ -50,6 +50,21 @@ diagnostics, delivery integrations, and additional machines, but each stage
 must earn that responsibility by solving a real workflow first.
 
 ## Development
+
+Run LocalOps with:
+
+```powershell
+go run .
+```
+
+It prints its OS-assigned IPv4 loopback URL, such as
+`http://127.0.0.1:51234`. Open that URL and submit the exact absolute project
+path to inspect. LocalOps accepts no directory scanning or parent/sibling
+lookup; it checks only the selected directory and its direct `.git` marker.
+
+The page uses no persistence, cookies, browser storage, environment values,
+log or secret reads, outbound requests, process control, browser launch, or
+request logging.
 
 Run the current test suite with:
 
